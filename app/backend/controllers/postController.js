@@ -4,7 +4,7 @@
 
 
 //getposts
-export const getposts = async (req, res) => {
+export const getPosts = async (req, res) => {
   try {
     const posts = await Post.find().sort({ createdAt: -1 });
     res.json(posts);
