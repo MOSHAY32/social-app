@@ -1,0 +1,30 @@
+.navbar {
+  background: white;
+  padding: 15px;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+
+.layout {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.sidebar {
+  width: 20%;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.feed {
+  width: 60%;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
