@@ -1,15 +1,249 @@
-.landing {
-  height: 100vh;
-  background: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30') center/cover no-repeat;
+/* LandingPage.css */
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f9f9f9;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: calc(100vh - 80px); /* פחות Navbar */
+  padding: 0 4rem;
+  gap: 2rem;
+  box-sizing: border-box;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.hero-buttons button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.hero-buttons button:first-child {
+  background: #7c3aed;
+  color: white;
+}
+
+.hero-buttons button:first-child:hover {
+  background: #5b21b6;
+}
+
+.hero-buttons button:last-child {
+  background: transparent;
+  border: 2px solid #7c3aed;
+  color: #7c3aed;
+}
+
+.hero-buttons button:last-child:hover {
+  background: #7c3aed;
+  color: white;
+}
+
+/* Hero Illustration */
+.hero-illustration {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.overlay {
-  background: rgba(0,0,0,0.6);
-  padding: 40px;
-  border-radius: 12px;
+/* רספונסיבי */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 2rem;
+  }
+  .hero-illustration {
+    margin-bottom: 2rem;
+  }
+}
+
+
+/* Features Section */
+.features {
+  padding: 6rem 2rem;
   text-align: center;
+}
+
+.features h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.features p {
+  color: #555;
+  margin-bottom: 3rem;
+}
+
+.features-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 250px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.card .icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: 6rem 2rem;
+  background: #f1f5f9;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.testimonial-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.testimonial {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 300px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+
+.testimonial p {
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+/* CTA Section */
+.cta {
+  padding: 6rem 2rem;
+  background: #1d4ed8;
   color: white;
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.cta button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  border: none;
+  background: white;
+  color: #1d4ed8;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cta button:hover {
+  background: #e0e7ff;
+}
+
+/* Footer */
+.footer {
+  padding: 4rem 2rem;
+  background: #111827;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer-left h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-links {
+  margin-top: 1rem;
+}
+
+.footer-links a {
+  margin: 0 1rem;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #2563eb;
+}
+
+/* Responsive Desktop */
+@media (min-width: 768px) {
+  .hero {
+    flex-direction: row;
+    text-align: left;
+  }
+  .hero-content {
+    flex: 1;
+  }
+  .hero-image-container {
+    flex: 1;
+    margin-top: 0;
+  }
 }

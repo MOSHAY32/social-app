@@ -1,24 +1,22 @@
+// src/components/Navbar.tsx
 import React from "react";
-import { UserButton } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
+import Logo from "./Logo";
+import "./Navbar.css";
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <nav
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "10px 20px",
-        backgroundColor: "#1e1e1e",
-        color: "#fff",
-      }}
-    >
-      <h2 style={{ cursor: "pointer" }} onClick={() => navigate("/home")}>
-        Event Social
-      </h2>
-      <UserButton afterSignOutUrl="/" />
+    <nav className="navbar">
+      <div className="logo" onClick={() => navigate("/home")}>
+        <Logo />
+      </div>
+
+      <div className="nav-buttons">
+        <button onClick={() => navigate("/login")}>Login</button>
+        <button onClick={() => navigate("/signup")}>Start Free</button>
+      </div>
     </nav>
   );
 };

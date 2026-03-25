@@ -1,0 +1,81 @@
+/* Navbar.css */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px; /* גובה ברור ל־Navbar */
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav-links a {
+  margin-right: 2rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #1d4ed8;
+}
+
+.nav-buttons button {
+  margin-left: 1rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.nav-buttons button:first-child {
+  background: transparent;
+  color: #1d4ed8;
+  border: 2px solid #1d4ed8;
+}
+
+.nav-buttons button:first-child:hover {
+  background: #1d4ed8;
+  color: white;
+}
+
+.nav-buttons button:last-child {
+  background: #1d4ed8;
+  color: white;
+}
+
+.nav-buttons button:last-child:hover {
+  background: #2563eb;
+}
+
+/* רספונסיבי למובייל */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem 2rem;
+    gap: 0.5rem;
+  }
+
+  .nav-links a {
+    margin: 0 1rem 0 0;
+  }
+
+  .nav-buttons button {
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+  }
+}
