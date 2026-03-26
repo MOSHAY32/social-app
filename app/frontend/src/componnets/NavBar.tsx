@@ -1,6 +1,6 @@
-// src/components/Navbar.tsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 import Logo from "./Logo";
 import "./Navbar.css";
 
@@ -9,13 +9,20 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="navbar">
-      <div className="logo" onClick={() => navigate("/home")}>
+      <div className="logo">
         <Logo />
       </div>
 
       <div className="nav-buttons">
-        <button onClick={() => navigate("/login")}>Login</button>
-        <button onClick={() => navigate("/signup")}>Start Free</button>
+        {/* אם המשתמש לא מחובר */}
+        <SignedOut>
+          <button onClick={() => navigate("/login")}>Login</button>
+          <button onClick={() => navigate("/login")}>Start Free</button>
+        </SignedOut>
+
+        <SignedIn>
+          <UserButton afterSignOutUrl="/login" />
+        </SignedIn>
       </div>
     </nav>
   );

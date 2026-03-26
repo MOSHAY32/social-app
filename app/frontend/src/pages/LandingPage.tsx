@@ -108,7 +108,7 @@ export default function LandingPage() {
       {/* CTA Section */}
       <section className="cta">
         <h2>Ready to join?</h2>
-        <button onClick={() => navigate("/signup")}>Start Free Now</button>
+        <button onClick={() => navigate("/login")}>Start Free Now</button>
       </section>
 
       {/* Footer */}

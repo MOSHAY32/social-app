@@ -1,5 +1,4 @@
-// App.tsx
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Landing from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
 import Profile from "./pages/Profile";
@@ -19,6 +18,7 @@ function App() {
           </SignedIn>
         }
       />
+
       <Route
         path="/profile"
         element={
@@ -31,9 +31,15 @@ function App() {
       <Route
         path="/login"
         element={
-          <SignedOut>
-            <Login />
-          </SignedOut>
+          <>
+            <SignedOut>
+              <Login />
+            </SignedOut>
+
+            <SignedIn>
+              <Navigate to="/home" />
+            </SignedIn>
+          </>
         }
       />
     </Routes>

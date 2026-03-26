@@ -1,0 +1,53 @@
+.feed {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.1s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.post-header {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.card h4 {
+  margin-bottom: 10px;
+  color: #1877f2;
+}
+
+.card p {
+  margin-bottom: 10px;
+}
+
+.post-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.post-actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #1877f2;
+  color: white;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.post-actions button:hover {
+  background-color: #145dbf;
+}
