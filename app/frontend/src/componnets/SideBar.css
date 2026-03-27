@@ -1,63 +1,83 @@
+/* Sidebar מודרני */
 .sidebar {
-  width: 220px;
-  background-color: #c07fee; /* סגול כהה */
+  width: 240px;
+  background: linear-gradient(180deg, #c07fee, #9f5de2);
   color: white;
   display: flex;
   flex-direction: column;
   height: 100vh;
-  padding: 20px;
-  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+  padding: 20px 15px;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.1);
   position: sticky;
-  
-  top: 40px;
+}
+
+/* לוגו */
+.sidebar-logo {
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 .sidebar-logo h2 {
-  margin-bottom: 40px;
-  font-size: 24px;
-  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
+/* רשימה */
 .sidebar-nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
-}
-
-.sidebar-nav li {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 10px;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* כל כפתור */
+.sidebar-nav li {
+  padding: 12px 14px;
+  border-radius: 12px;
   cursor: pointer;
-  border-radius: 10px;
-  transition: background 0.2s;
+  transition: all 0.25s ease;
+  font-size: 15px;
+  font-weight: 500;
 }
 
+/* hover */
 .sidebar-nav li:hover {
-  background-color: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(5px);
 }
 
-.sidebar-nav li span {
-  font-size: 16px;
+/* active (אם תרצה בעתיד) */
+.sidebar-nav li.active {
+  background: white;
+  color: #9f5de2;
+  font-weight: 600;
 }
 
+/* footer */
 .sidebar-footer {
   margin-top: auto;
   font-size: 12px;
   text-align: center;
-  color: rgba(255,255,255,0.7);
+  opacity: 0.7;
 }
 
 /* רספונסיבי */
 @media (max-width: 768px) {
   .sidebar {
-    width: 60px;
+    width: 70px;
     padding: 10px;
   }
 
   .sidebar-logo h2,
   .sidebar-nav li span {
     display: none;
+  }
+
+  .sidebar-nav li {
+    text-align: center;
+    padding: 12px 0;
   }
 }

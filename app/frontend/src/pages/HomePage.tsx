@@ -1,6 +1,5 @@
 import Navbar from "../componnets/NavBar";
 import Search from "../componnets/Search";
-import Sidebar from "../componnets/SideBar";
 import EventCard from "../componnets/EventCard";
 import "./Home.css";
 
@@ -20,31 +19,18 @@ const mockEvents = Array.from({ length: 8 }).map((_, i) => ({
 export default function HomePage() {
   return (
     <div className="home-container">
-      {/* Navbar */}
-      <Navbar />
-
-      {/* Header */}
-      <div className="home-header">
-        <h2>Welcome to Event Social!</h2>
-        <p>Discover events happening around you</p>
-      </div>
-
+      
       {/* Search */}
-      <div className="search-container">
+      <section className="search-container">
         <Search />
-      </div>
+      </section>
 
-      {/* Layout */}
-      <div className="layout">
-        <Sidebar />
-
-        {/* Event Wrapper */}
-        <div className="event-wrapper">
-          {mockEvents.map((event) => (
-            <EventCard key={event.id} {...event} />
-          ))}
-        </div>
-      </div>
+      {/* Event Cards */}
+      <section className="event-wrapper">
+        {mockEvents.map((event) => (
+          <EventCard key={event.id} {...event} />
+        ))}
+      </section>
     </div>
   );
 }

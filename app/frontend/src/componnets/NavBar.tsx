@@ -14,15 +14,25 @@ const Navbar: React.FC = () => {
       </div>
 
       <div className="nav-buttons">
-        {/* אם המשתמש לא מחובר */}
         <SignedOut>
           <button onClick={() => navigate("/login")}>Login</button>
           <button onClick={() => navigate("/login")}>Start Free</button>
         </SignedOut>
 
         <SignedIn>
+          
+        <div className="nav-links">
+          <button className="nav-button" onClick={() => navigate("/create-event")}>Create Event</button>
+          <button className="nav-button" onClick={() => navigate("/my-profile")}>My Profile</button>
+          <button className="nav-button" onClick={() => navigate("/home")}>Home</button>
+        </div>
+
+          <div className="nav-buttons">
           <UserButton afterSignOutUrl="/" />
+          </div>
         </SignedIn>
+
+        
       </div>
     </nav>
   );

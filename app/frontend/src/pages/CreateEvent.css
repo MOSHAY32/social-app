@@ -1,0 +1,100 @@
+/* Container כללי */
+.create-continer {
+  max-width: 700px;
+  margin: 100px auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.create-continer h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1d4ed8;
+}
+
+/* Wrapper לכל השדות - Grid */
+.inputs-conteiner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* שני שדות בכל שורה */
+  gap: 1rem;
+}
+
+/* שדות שצריכים להיות מלאים רוחבית */
+.inputs-text-area,
+.inputs-image {
+  grid-column: 1 / -1; /* ממלאים את כל השורה */
+}
+
+/* שדות קלט רגילים */
+.inputs-btns,
+.inputs-location {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.inputs-btns:focus,
+.inputs-location:focus,
+.inputs-text-area:focus,
+.inputs-image:focus {
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 3px rgba(29,78,216,0.2);
+  outline: none;
+}
+
+/* TextArea - תיאור האירוע */
+.inputs-text-area {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Image Field */
+.inputs-image {
+  height: 150px;
+  object-fit: cover;
+  border: 2px dashed #9ca3af;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  cursor: pointer;
+}
+
+/* כפתורים */
+.inputs-btns[type="submit"],
+.inputs-btns[type="button"],
+.inputs-btns:not([type]) {
+  background-color: #1d4ed8;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.inputs-btns:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* כפתור משני – Select From Gallery */
+.inputs-conteiner button:nth-of-type(2) {
+  background-color: transparent;
+  color: #1d4ed8;
+  border: 2px solid #1d4ed8;
+}
+
+.inputs-conteiner button:nth-of-type(2):hover {
+  background-color: #1d4ed8;
+  color: #fff;
+}
+
+/* רספונסיבי */
+@media (max-width: 500px) {
+  .inputs-conteiner {
+    grid-template-columns: 1fr; /* כל שדה שורה מלאה */
+  }
+}

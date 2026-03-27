@@ -3,31 +3,28 @@ import Landing from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
 import Profile from "./pages/Profile";
 import Login from "./pages/LoginPage";
+import CreateEvent from "./pages/CreateEvent";
+import Layout from "./componnets/Layout";
+
 import { SignedIn, SignedOut } from "@clerk/clerk-react";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
-
       <Route
-        path="/home"
         element={
           <SignedIn>
-            <HomePage />
+            <Layout />
           </SignedIn>
         }
-      />
+      >
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/create-event" element={<CreateEvent />} />
+      </Route>
 
-      <Route
-        path="/profile"
-        element={
-          <SignedIn>
-            <Profile />
-          </SignedIn>
-        }
-      />
-
+      {/* Login */}
       <Route
         path="/login"
         element={

@@ -1,12 +1,12 @@
 .event-card {
   position: relative;
   background: white;
-  padding: 20px;
+  padding: 25px; /* גדלנו קצת */
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s;
-  max-width: 400px;
-  margin-bottom: 20px;
+  max-width: 450px; /* הגדלנו קצת */
+  margin-bottom: 25px;
 }
 
 .event-card:hover {
@@ -41,29 +41,29 @@
 .price {
   font-weight: bold;
   color: #2ecc71;
-   background-color: #f0f0f0;
-  padding: 2px 8px;
+  background-color: #f0f0f0;
+  padding: 4px 10px; /* מעט יותר padding */
   border-radius: 8px;
   font-size: 14px;
 }
 
 .category {
   background-color: #f0f0f0;
-  padding: 2px 8px;
+  padding: 4px 10px;
   border-radius: 8px;
   font-size: 14px;
   color: #555;
 }
 
 .date {
-  font-size: 12px;
+  font-size: 13px;
   color: #777;
   margin-bottom: 8px;
 }
 
 .description {
-  margin-bottom: 10px;
-  line-height: 1.4;
+  margin-bottom: 12px;
+  line-height: 1.5;
 }
 
 .author {
@@ -79,65 +79,49 @@
 
 .event-image {
   width: 100%;
-  height: 150px;
+  height: 180px; /* הגדלנו */
   object-fit: cover;
-  border-radius: 15px 15px 0 0; /* רק לפינות העליונות */
+  border-radius: 15px 15px 0 0;
   margin-bottom: 15px;
 }
 
+/* Wrapper עם Grid */
 .event-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* עד 4 כרטיסים בשורה */
-  gap: 20px;
-  margin-top: 20px;
-  margin-left: 50px;
-  margin-right: 50px;
+  grid-template-columns: repeat(3, 1fr); /* 3 כרטיסים בשורה */
+  gap: 25px; /* הגדלנו קצת המרחק */
+  margin: 20px 50px 20px 50px;
 }
 
-
+/* רספונסיבי */
 @media (max-width: 1200px) {
   .event-wrapper {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* 2 בשורה למסכים בינוניים */
+    margin-left: 30px;
+    margin-right: 30px;
   }
 }
 
 @media (max-width: 768px) {
   .event-wrapper {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: 1fr; /* שורה אחת במובייל */
     margin-left: 20px;
     margin-right: 20px;
   }
 }
 
 .read-more {
-  padding: 8px 12px;
+  padding: 10px 14px;
   background-color: #8e5cf2;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
-  margin-bottom: 10px;
-  transition: background 0.2s;
   margin: 5px;
+  transition: background 0.2s;
 }
 
 .read-more:hover {
   background-color: #145dbf;
-}
-
-.event-wrapper {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* מקסימום 4 בשורה */
-  gap: 20px;
-  margin-top: 20px;
-  margin-left: 50px;
-  margin-right: 50px;
-}
-
-/* רספונסיבי */
-@media (max-width: 1200px) {
-  .event-wrapper {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }
