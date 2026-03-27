@@ -1,0 +1,20 @@
+
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+
+}
+
+.search{
+ border: 2px solid #ccc;
+ background-color: transparent;
+ box-shadow: #007bff 0px 0px 5px;
+ border: 30px;
+ width: 600px;
+     padding: 12px 20px;
+    border-radius: 30px;
+}

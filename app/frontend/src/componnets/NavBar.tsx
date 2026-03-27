@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
         </SignedOut>
 
         <SignedIn>
-          <UserButton afterSignOutUrl="/login" />
+          <UserButton afterSignOutUrl="/" />
         </SignedIn>
       </div>
     </nav>

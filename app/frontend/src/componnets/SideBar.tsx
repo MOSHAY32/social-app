@@ -4,15 +4,18 @@ import "./Sidebar.css";
 const Sidebar: React.FC = () => {
   return (
     <div className="sidebar">
-      <h3>Filter Events</h3>
-      <div className="filter">
-        <label>City:</label>
-        <input type="text" placeholder="Tel Aviv" />
+      <div className="sidebar-logo">
+        <h2>EventSocial</h2>
       </div>
-      <div className="filter">
-        <label>Country:</label>
-        <input type="text" placeholder="Israel" />
-      </div>
+
+      <nav className="sidebar-nav">
+        <ul>
+          <li>Create Event</li>
+          <li>Most Popular</li>
+          <li>Profile</li>
+          <li>My Ticket</li>
+        </ul>
+      </nav>
     </div>
   );
 };
