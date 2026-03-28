@@ -1,30 +1,166 @@
 import { useState } from "react";
+import { useUser } from "@clerk/clerk-react";
 import "./CreateEvent.css";
 
-
-
 function CreateEventPage() {
+  const { user, isLoaded } = useUser();
+  const [formData, setFormData] = useState({
+    eventName: "",
+    category: "",
+    description: "",
+    location: "",
+    startDate: "",
+    endDate: "",
+    price: "",
+    url: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+
+  const eventData = {
+  creatorId: user.id,
+  name: formData.eventName,
+  type: formData.category,
+  description: formData.description,
+  place: formData.location,
+  startDate: formData.startDate,
+  endDate: formData.endDate,
+  price: formData.price,
+  url: formData.url
+};
+console.log("Submitting event:", eventData);
+console.log("Submitting event:", user.id);
+
+
+    // בדיקה שהנתונים מלאים
+    console.log("Submitting event:", eventData);
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/events`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(eventData),
+      });
+
+      const data = await response.json();
+      console.log("Backend response:", data);
+
+      if (response.ok) {
+        console.log("Event created successfully!");
+        setFormData({
+          eventName: "",
+          type: "",
+          description: "",
+          location: "",
+          startDate: "",
+          endDate: "",
+          price: "",
+          url: "",
+        });
+      } else {
+        console.log(data.message || "Error creating event");
+      }
+    } catch (err) {
+      console.error("Network error:", err);
+      console.log("Network error");
+    }
+  };
+
+ if (!isLoaded) return <div>Loading user...</div>;
+
   return (
     <div className="create-continer"> 
-      <h2>Create Event</h2>
-      <form>
-        <div className="inputs-conteiner" >
-            <input className="inputs-btns" type="text" placeholder="Event Name" />
-            <input className="inputs-btns" type="text" placeholder="Catagory" />
+      <form className="create-form" onSubmit={handleSubmit}>
+        <div className="inputs-conteiner">
+          <input
+            className="inputs-btns"
+            type="text"
+            name="eventName"
+            placeholder="Event Name"
+            value={formData.eventName}
+            onChange={handleChange}
+          />
+          <input
+            className="inputs-btns"
+            type="text"
+            name="category"
+            placeholder="Category"
+            value={formData.category}
+            onChange={handleChange}
+          />
 
-            <input className="inputs-text-area" type="text" placeholder="Event Description"/>
-            <input className="inputs-text-area" type="image" placeholder="Drag photo here "/>
-            <button className="inputs-btns">Select From Gallery</button>
+          <input
+            className="inputs-text-area full-width"
+            type="text"
+            name="description"
+            placeholder="Event Description"
+            value={formData.description}
+            onChange={handleChange}
+          />
 
-            <input className="inputs-location" type="text" placeholder="Event Location"/>
-            <input className="inputs-location" type="date" placeholder="Event Date"/>
+          <div className="warrper-img">
+            <input className="inputs-text-area" type="image" alt="Drag photo here" />
+            <button className="image-btn" type="button">Select From Gallery</button>
+          </div>
 
-            <input className="inputs-btns" type="text" placeholder="Price" />
-            <input className="inputs-btns" type="text" placeholder="Url" />
+          <input
+            className="inputs-location full-width"
+            type="text"
+            name="location"
+            placeholder="Event Location"
+            value={formData.location}
+            onChange={handleChange}
+          />
 
-            <button className="inputs-btns">Create Event</button>
+          <input
+            className="inputs-location"
+            type="text"
+            name="startDate"
+            placeholder="Start Date"
+            value={formData.startDate}
+            onFocus={(e) => (e.target.type = "date")}
+            onBlur={(e) => e.target.value === "" && (e.target.type = "text")}
+            onChange={handleChange}
+          />
+          <input
+            className="inputs-location"
+            type="text"
+            name="endDate"
+            placeholder="End Date"
+            value={formData.endDate}
+            onFocus={(e) => (e.target.type = "date")}
+            onBlur={(e) => e.target.value === "" && (e.target.type = "text")}
+            onChange={handleChange}
+          />
+
+          <input
+            className="inputs-btns"
+            type="text"
+            name="price"
+            placeholder="Price"
+            value={formData.price}
+            onChange={handleChange}
+          />
+          <input
+            className="inputs-btns"
+            type="text"
+            name="url"
+            placeholder="Url"
+            value={formData.url}
+            onChange={handleChange}
+          />
+
+          <button className="inputs-btns1 submit-btn" type="submit">
+            Create Event
+          </button>
         </div>
-
       </form>
     </div>
   );

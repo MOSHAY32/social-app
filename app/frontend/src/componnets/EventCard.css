@@ -1,127 +1,164 @@
 .event-card {
   position: relative;
   background: white;
-  padding: 25px; /* גדלנו קצת */
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
-  max-width: 450px; /* הגדלנו קצת */
+  padding: 0; /* מורידים padding כדי לתת לתמונה להיות חלק מהכרטיס */
+  border-radius: 20px;
+  overflow: hidden; /* חשוב לתמונה */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transition: all 0.25s ease;
+  max-width: 420px;
   margin-bottom: 25px;
+  cursor: pointer;
 }
 
 .event-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
 }
 
+/* 🖼️ IMAGE */
+.event-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ✨ overlay עדין */
+.event-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.15), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.event-card:hover::after {
+  opacity: 1;
+}
+
+/* ❌ delete */
 .delete-icon {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 12px;
+  right: 12px;
   cursor: pointer;
-  color: #e74c3c;
-  transition: color 0.2s;
+  color: #ff4d4f;
+  background: white;
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.2s;
+  z-index: 2;
 }
 
 .delete-icon:hover {
-  color: #c0392b;
+  transform: scale(1.1);
+  background: #ffeaea;
 }
 
-.event-card h3 {
-  margin-bottom: 10px;
-  color: #7070ed;
+/* 📦 CONTENT */
+.event-content {
+  padding: 18px;
 }
 
+/* 🏷️ META */
 .event-meta {
   display: flex;
-  gap: 15px;
-  margin-bottom: 8px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .price {
-  font-weight: bold;
-  color: #2ecc71;
-  background-color: #f0f0f0;
-  padding: 4px 10px; /* מעט יותר padding */
-  border-radius: 8px;
-  font-size: 14px;
+  font-weight: 600;
+  color: #065f46;
+  background: #d1fae5;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
 }
 
 .category {
-  background-color: #f0f0f0;
-  padding: 4px 10px;
-  border-radius: 8px;
-  font-size: 14px;
+  background: #f3f4f6;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
   color: #555;
 }
 
+/* 📅 DATE */
 .date {
   font-size: 13px;
-  color: #777;
-  margin-bottom: 8px;
+  color: #888;
+  margin-bottom: 6px;
 }
 
+/* 🧠 TITLE */
+.event-card h3 {
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+}
+
+/* 📝 DESCRIPTION */
 .description {
   margin-bottom: 12px;
   line-height: 1.5;
-}
-
-.author {
-  font-size: 12px;
-  color: #999;
-  margin-bottom: 5px;
-}
-
-.location {
-  font-size: 12px;
   color: #555;
 }
 
-.event-image {
-  width: 100%;
-  height: 180px; /* הגדלנו */
-  object-fit: cover;
-  border-radius: 15px 15px 0 0;
-  margin-bottom: 15px;
+/* 👤 AUTHOR */
+.author {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 4px;
 }
 
-/* Wrapper עם Grid */
+/* 📍 LOCATION */
+.location {
+  font-size: 13px;
+  color: #999;
+}
+
+/* 🔘 BUTTON */
+.read-more {
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #8e5cf2, #6c4cf1);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.read-more:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(108,76,241,0.3);
+}
+
+/* 📱 GRID */
 .event-wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 כרטיסים בשורה */
-  gap: 25px; /* הגדלנו קצת המרחק */
-  margin: 20px 50px 20px 50px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  padding: 20px 50px;
 }
 
-/* רספונסיבי */
+/* 📱 RESPONSIVE */
 @media (max-width: 1200px) {
   .event-wrapper {
-    grid-template-columns: repeat(2, 1fr); /* 2 בשורה למסכים בינוניים */
-    margin-left: 30px;
-    margin-right: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px 30px;
   }
 }
 
 @media (max-width: 768px) {
   .event-wrapper {
-    grid-template-columns: 1fr; /* שורה אחת במובייל */
-    margin-left: 20px;
-    margin-right: 20px;
+    grid-template-columns: 1fr;
+    padding: 20px;
   }
-}
-
-.read-more {
-  padding: 10px 14px;
-  background-color: #8e5cf2;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  margin: 5px;
-  transition: background 0.2s;
-}
-
-.read-more:hover {
-  background-color: #145dbf;
 }
