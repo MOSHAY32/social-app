@@ -6,3 +6,27 @@
   margin: auto;
   text-align: center;
 }
+
+.profile-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: rgb(233, 233, 241);
+  border-radius: 15px;
+  padding: 10px;
+  margin-bottom: 20px;  
+  height: 100px;
+}
+
+.myEvent {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(233, 233, 241);
+  border-radius: 15px;
+}
+
+.myEvent button {
+  margin-left: auto;
+}

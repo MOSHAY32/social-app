@@ -1,17 +1,29 @@
 import Navbar from "../componnets/NavBar";
+import EventCard from "../componnets/EventCard";
+
 import "./Profile.css";
 
 export default function Profile() {
   return (
     <div className="container">
-        <Navbar />
-        <div style={{ padding: "20px" }}>
-        <h2>Your Profile</h2>
+        <div className="profile-header" style={{ padding: "20px" }}>
+        <h2>My Tickets</h2>
+        <button className="btn">Exsplore More Event</button>
+
       </div>
-      <div className="profile-card">
-        <h2>Your Profile</h2>
-        <p>Name: User</p>
-        <button className="btn btn-primary">Edit Profile</button>
+      <section className="tickets-section">
+        <EventCard />
+      </section>
+
+      <div className="myEvent" style={{ padding: "20px" }}>
+        <h2>My Events</h2>
+        <button className="btn">Create New Event</button>
+      <div />
+
+      <section className="events-section">
+        {/* Event items would go here */}
+      </section>
+
       </div>
     </div>
   );

@@ -22,9 +22,10 @@ const Navbar: React.FC = () => {
         <SignedIn>
           
         <div className="nav-links">
-          <button className="nav-button" onClick={() => navigate("/create-event")}>Create Event</button>
-          <button className="nav-button" onClick={() => navigate("/my-profile")}>My Profile</button>
           <button className="nav-button" onClick={() => navigate("/home")}>Home</button>
+          <button className="nav-button" onClick={() => navigate("/create-event")}>Create Event</button>
+          <button className="nav-button" onClick={() => navigate("/profile")}>My Profile</button>
+          
         </div>
 
           <div className="nav-buttons">

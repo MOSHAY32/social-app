@@ -16,10 +16,12 @@ h1, h2, h3 {
 
 .btn {
   padding: 10px 20px;
-  border-radius: 8px;
+  border-radius: 30px;
   border: none;
   cursor: pointer;
   font-weight: bold;
+  background-color: rgb(119, 93, 214);
+  color: #fff;
 }
 
 .btn-primary {
