@@ -17,15 +17,15 @@ body {
 }
 
 /* Hero Section */
+
 .hero {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  min-height: calc(100vh - 80px); /* פחות Navbar */
+  min-height: calc(100vh - 80px);
   padding: 0 4rem;
   gap: 2rem;
-  box-sizing: border-box;
 }
 
 .hero-content {
@@ -47,6 +47,7 @@ body {
 
 .hero-buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -79,7 +80,6 @@ body {
   color: white;
 }
 
-/* Hero Illustration */
 .hero-illustration {
   flex: 1;
   display: flex;
@@ -87,20 +87,8 @@ body {
   align-items: center;
 }
 
-/* רספונסיבי */
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column-reverse;
-    text-align: center;
-    padding: 2rem;
-  }
-  .hero-illustration {
-    margin-bottom: 2rem;
-  }
-}
-
-
 /* Features Section */
+
 .features {
   padding: 6rem 2rem;
   text-align: center;
@@ -128,6 +116,7 @@ body {
   padding: 2rem;
   border-radius: 1rem;
   width: 250px;
+  max-width: 100%;
   box-shadow: 0 2px 12px rgba(0,0,0,0.05);
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -142,7 +131,8 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Testimonials Section */
+/* Testimonials */
+
 .testimonials {
   padding: 6rem 2rem;
   background: #f1f5f9;
@@ -166,6 +156,7 @@ body {
   padding: 2rem;
   border-radius: 1rem;
   width: 300px;
+  max-width: 100%;
   box-shadow: 0 2px 12px rgba(0,0,0,0.05);
 }
 
@@ -174,7 +165,8 @@ body {
   color: #555;
 }
 
-/* CTA Section */
+/* CTA */
+
 .cta {
   padding: 6rem 2rem;
   background: #1d4ed8;
@@ -203,6 +195,7 @@ body {
 }
 
 /* Footer */
+
 .footer {
   padding: 4rem 2rem;
   background: #111827;
@@ -233,17 +226,81 @@ body {
   color: #2563eb;
 }
 
-/* Responsive Desktop */
-@media (min-width: 768px) {
+/* ---------------- RESPONSIVE ---------------- */
+
+/* Large screens */
+@media (max-width: 1200px) {
+
   .hero {
-    flex-direction: row;
-    text-align: left;
+    padding: 0 3rem;
   }
-  .hero-content {
-    flex: 1;
+
+}
+
+/* Laptop */
+
+@media (max-width: 1024px) {
+
+  .hero-content h1 {
+    font-size: 2.5rem;
   }
-  .hero-image-container {
-    flex: 1;
-    margin-top: 0;
+
+}
+
+/* Tablet */
+
+@media (max-width: 768px) {
+
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 2rem;
   }
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+  .features h2,
+  .testimonials h2,
+  .cta h2 {
+    font-size: 2rem;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .testimonial {
+    width: 100%;
+  }
+
+}
+
+/* Small phones */
+
+@media (max-width: 400px) {
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+  }
+
 }

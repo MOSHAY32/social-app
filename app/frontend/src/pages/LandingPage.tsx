@@ -12,7 +12,6 @@ import Navbar from "../componnets/NavBar";
 export default function LandingPage() {
   const navigate = useNavigate();
 
-  // נתוני האנשים ל־Hero
   const people = [
     { cx: 70, cy: 200, color: "#7c3aed" },
     { cx: 150, cy: 180, color: "#a78bfa" },
@@ -54,7 +53,6 @@ export default function LandingPage() {
           transition={{ duration: 1.2 }}
         >
           <svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-            {/* דמויות עם אנימציה של קפיצה */}
             {people.map((person, i) => (
               <motion.circle
                 key={i}
@@ -67,7 +65,6 @@ export default function LandingPage() {
               />
             ))}
 
-            {/* קווים שמתחברים בהדרגה */}
             {lines.map((line, i) => (
               <motion.line
                 key={i}
@@ -84,44 +81,7 @@ export default function LandingPage() {
             ))}
           </svg>
         </motion.div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" className="features">
-        <h2>Why Together?</h2>
-        <p>Everything you need to manage and join events efficiently.</p>
-        <div className="features-cards">
-          {[
-            { icon: "🎉", title: "Find Events", desc: "Discover local events that interest you." },
-            { icon: "🤝", title: "Meet People", desc: "Connect with like-minded attendees easily." },
-            { icon: "📅", title: "Plan Your Day", desc: "Organize your schedule and never miss an event." },
-          ].map((feature, i) => (
-            <motion.div whileHover={{ scale: 1.05 }} className="card" key={i}>
-              <div className="icon">{feature.icon}</div>
-              <h3>{feature.title}</h3>
-              <p>{feature.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="cta">
-        <h2>Ready to join?</h2>
-        <button onClick={() => navigate("/login")}>Start Free Now</button>
-      </section>
-
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-left">
-          <h3>Together</h3>
-          <p>&copy; 2026 Together. All rights reserved.</p>
-        </div>
-        <div className="footer-links">
-          <a href="#features">Features</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </footer>
+      </section>      
     </div>
   );
 }

@@ -17,29 +17,31 @@ function CreateEventPage() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
 
-  const eventData = {
-  creatorId: user.id,
-  name: formData.eventName,
-  type: formData.category,
-  description: formData.description,
-  place: formData.location,
-  startDate: formData.startDate,
-  endDate: formData.endDate,
-  price: formData.price,
-  url: formData.url
-};
-console.log("Submitting event:", eventData);
-console.log("Submitting event:", user.id);
+    // בדיקה שהמשתמש טעון
+    if (!isLoaded || !user) {
+      console.log("User not loaded yet");
+      return;
+    }
 
+    // הכנת הנתונים לשליחה לשרת
+    const eventData = {
+      creatorId: user.id, // עכשיו בטוח שיש user
+      name: formData.eventName,
+      type: formData.category,
+      description: formData.description,
+      place: formData.location,
+      startDate: formData.startDate ? new Date(formData.startDate) : null,
+      endDate: formData.endDate ? new Date(formData.endDate) : null,
+      price: formData.price ? Number(formData.price) : 0,
+      url: formData.url || "",
+    };
 
-    // בדיקה שהנתונים מלאים
     console.log("Submitting event:", eventData);
 
     try {
@@ -54,9 +56,10 @@ console.log("Submitting event:", user.id);
 
       if (response.ok) {
         console.log("Event created successfully!");
+        // איפוס הטופס
         setFormData({
           eventName: "",
-          type: "",
+          category: "",
           description: "",
           location: "",
           startDate: "",
@@ -65,18 +68,18 @@ console.log("Submitting event:", user.id);
           url: "",
         });
       } else {
-        console.log(data.message || "Error creating event");
+        console.error("Error creating event:", data.message);
       }
     } catch (err) {
       console.error("Network error:", err);
-      console.log("Network error");
     }
   };
 
- if (!isLoaded) return <div>Loading user...</div>;
+  // עד שהמשתמש טעון לא מציגים את הטופס
+  if (!isLoaded || !user) return <div>Loading user...</div>;
 
   return (
-    <div className="create-continer"> 
+    <div className="create-continer">
       <form className="create-form" onSubmit={handleSubmit}>
         <div className="inputs-conteiner">
           <input
@@ -95,7 +98,6 @@ console.log("Submitting event:", user.id);
             value={formData.category}
             onChange={handleChange}
           />
-
           <input
             className="inputs-text-area full-width"
             type="text"
@@ -104,12 +106,10 @@ console.log("Submitting event:", user.id);
             value={formData.description}
             onChange={handleChange}
           />
-
           <div className="warrper-img">
             <input className="inputs-text-area" type="image" alt="Drag photo here" />
             <button className="image-btn" type="button">Select From Gallery</button>
           </div>
-
           <input
             className="inputs-location full-width"
             type="text"
@@ -118,7 +118,6 @@ console.log("Submitting event:", user.id);
             value={formData.location}
             onChange={handleChange}
           />
-
           <input
             className="inputs-location"
             type="text"
@@ -139,10 +138,9 @@ console.log("Submitting event:", user.id);
             onBlur={(e) => e.target.value === "" && (e.target.type = "text")}
             onChange={handleChange}
           />
-
           <input
             className="inputs-btns"
-            type="text"
+            type="number"
             name="price"
             placeholder="Price"
             value={formData.price}
@@ -156,7 +154,6 @@ console.log("Submitting event:", user.id);
             value={formData.url}
             onChange={handleChange}
           />
-
           <button className="inputs-btns1 submit-btn" type="submit">
             Create Event
           </button>

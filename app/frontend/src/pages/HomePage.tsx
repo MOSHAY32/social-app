@@ -1,25 +1,38 @@
+import { useEffect, useState } from "react";
 import Navbar from "../componnets/NavBar";
 import Search from "../componnets/Search";
 import EventCard from "../componnets/EventCard";
 import "./Home.css";
 
-const mockEvents = Array.from({ length: 8 }).map((_, i) => ({
-  id: i + 1,
-  title: `Event ${i + 1}`,
-  description: "This is a sample event description.",
-  location: i % 2 === 0 ? "Tel Aviv" : "Jerusalem",
-  isFree: i % 3 === 0,
-  price: (i + 1) * 10,
-  category: i % 2 === 0 ? "Music" : "Art",
-  date: "2026-04-10",
-  author: "Shay",
-  imageUrl: "https://via.placeholder.com/400x150",
-}));
-
 export default function HomePage() {
+  const [events, setEvents] = useState([]); // כאן נשמור את כל האירועים מהשרת
+  const [loading, setLoading] = useState(true); // מצב טעינה
+
+  // פונקציה להביא את כל האירועים מהשרת
+  const getAllEvents = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/events`);
+      if (!response.ok) {
+        console.error("Fetch failed:", response.status, await response.text());
+        setLoading(false);
+        return;
+      }
+      const data = await response.json();
+      setEvents(data);
+    } catch (err) {
+      console.error("Network error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+  useEffect(() => {
+    getAllEvents();
+  }, []);
+
   return (
     <div className="home-container">
-      
       {/* Search */}
       <section className="search-container">
         <Search />
@@ -27,9 +40,25 @@ export default function HomePage() {
 
       {/* Event Cards */}
       <section className="event-wrapper">
-        {mockEvents.map((event) => (
-          <EventCard key={event.id} {...event} />
-        ))}
+        {loading
+          ? Array.from({ length: 8 }).map((_, i) => <EventCard key={i} />) // Placeholder
+          : events.map((event) => (
+              <EventCard
+                key={event._id}
+                event={{
+                  _id: event._id,
+                  title: event.name,
+                  description: event.description,
+                  location: event.place,
+                  isFree: event.price === 0,
+                  price: event.price,
+                  category: event.type,
+                  date: event.startDate,
+                  author: { _id: event.creatorId, name: "Creator" },
+                  imageUrl: event.url,
+                }}
+              />
+            ))}
       </section>
     </div>
   );

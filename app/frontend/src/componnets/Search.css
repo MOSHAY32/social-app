@@ -1,20 +1,35 @@
-
-
 .search-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
   gap: 10px;
-
+  width: 100%;
+  padding: 10px 25px;
+  box-sizing: border-box; /* חשוב למנוע overflow */
 }
 
-.search{
- border: 2px solid #ccc;
- background-color: transparent;
- box-shadow: #007bff 0px 0px 5px;
- border: 30px;
- width: 600px;
-     padding: 12px 20px;
-    border-radius: 30px;
+.search {
+  border: 2px solid #ccc;
+  background-color: transparent;
+  box-shadow: #007bff 0px 0px 5px;
+  width: 100%;           /* מתרחב למיכל האב */
+  max-width: 600px;      /* לא יגדל יותר מדי */
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-size: 1rem;
+  box-sizing: border-box; /* מוודא שה-padding לא מרחיב את השדה */
+}
+
+/* רספונסיבי */
+@media (max-width: 480px) {
+  .search {
+    padding: 10px 15px;
+    font-size: 0.95rem;
+  }
+
+  .search-container {
+    padding: 10px 15px;
+    gap: 5px;
+  }
 }

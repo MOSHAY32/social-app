@@ -25,6 +25,7 @@ const Navbar: React.FC = () => {
           <button className="nav-button" onClick={() => navigate("/home")}>Home</button>
           <button className="nav-button" onClick={() => navigate("/create-event")}>Create Event</button>
           <button className="nav-button" onClick={() => navigate("/profile")}>My Profile</button>
+          <button className="nav-button" onClick={() => navigate("/my-orders")}>My Orders</button>
           
         </div>
 

@@ -5,6 +5,7 @@ import Profile from "./pages/Profile";
 import Login from "./pages/LoginPage";
 import CreateEvent from "./pages/CreateEvent";
 import Layout from "./componnets/Layout";
+import MyOrders from "./pages/MyOrders";
 
 import { SignedIn, SignedOut } from "@clerk/clerk-react";
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/create-event" element={<CreateEvent />} />
+        <Route path="/my-orders" element={<MyOrders />} />
       </Route>
 
       {/* Login */}

@@ -4,6 +4,8 @@
   font-family: Arial, sans-serif;
 }
 
+/* Header */
+
 .home-header {
   padding: 20px 40px;
   text-align: center;
@@ -13,11 +15,15 @@
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
 
+/* Layout */
+
 .layout {
   display: flex;
   gap: 20px;
   padding: 0 40px 40px 40px;
 }
+
+/* Sidebar */
 
 .sidebar {
   width: 250px;
@@ -28,6 +34,8 @@
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
 
+/* Filters */
+
 .filter {
   margin-top: 10px;
   display: flex;
@@ -36,14 +44,18 @@
 
 .filter input {
   margin-top: 5px;
-  padding: 5px;
+  padding: 8px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
 
+/* Feed */
+
 .feed {
   flex: 2;
 }
+
+/* Cards */
 
 .card {
   background: white;
@@ -57,8 +69,11 @@
   margin-bottom: 10px;
 }
 
+/* Post actions */
+
 .post-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
 }
@@ -78,6 +93,8 @@
   background-color: #145dbf;
 }
 
+/* Sidebar links */
+
 .sidebar ul {
   padding-left: 15px;
 }
@@ -90,4 +107,60 @@
 
 .sidebar ul li:hover {
   text-decoration: underline;
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+
+/* Laptop */
+
+@media (max-width: 1200px) {
+
+  .layout {
+    padding: 0 30px 30px 30px;
+  }
+
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+  .home-header {
+    padding: 15px;
+  }
+
+  .layout {
+    padding: 0 15px 25px 15px;
+    gap: 15px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+}
+
+/* Small phones */
+
+@media (max-width: 400px) {
+
+  .post-actions button {
+    width: 100%;
+  }
+
 }

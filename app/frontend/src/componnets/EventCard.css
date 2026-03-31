@@ -1,9 +1,11 @@
+/* ---------- Event Card Responsive CSS ---------- */
+
 .event-card {
   position: relative;
   background: white;
-  padding: 0; /* מורידים padding כדי לתת לתמונה להיות חלק מהכרטיס */
+  padding: 0;
   border-radius: 20px;
-  overflow: hidden; /* חשוב לתמונה */
+  overflow: hidden;
   box-shadow: 0 6px 20px rgba(0,0,0,0.08);
   transition: all 0.25s ease;
   max-width: 420px;
@@ -16,7 +18,7 @@
   box-shadow: 0 16px 40px rgba(0,0,0,0.12);
 }
 
-/* 🖼️ IMAGE */
+/* IMAGE */
 .event-image {
   width: 100%;
   height: 200px;
@@ -24,7 +26,7 @@
   display: block;
 }
 
-/* ✨ overlay עדין */
+/* Overlay */
 .event-card::after {
   content: "";
   position: absolute;
@@ -38,7 +40,7 @@
   opacity: 1;
 }
 
-/* ❌ delete */
+/* DELETE ICON */
 .delete-icon {
   position: absolute;
   top: 12px;
@@ -58,14 +60,14 @@
   background: #ffeaea;
 }
 
-/* 📦 CONTENT */
+/* CONTENT */
 .event-content {
   padding: 18px;
 }
 
-/* 🏷️ META */
 .event-meta {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 10px;
 }
@@ -87,14 +89,14 @@
   color: #555;
 }
 
-/* 📅 DATE */
-.date {
+.date,
+.author,
+.location {
   font-size: 13px;
-  color: #888;
-  margin-bottom: 6px;
+  color: #777;
+  margin-bottom: 4px;
 }
 
-/* 🧠 TITLE */
 .event-card h3 {
   margin-bottom: 8px;
   font-size: 18px;
@@ -102,27 +104,12 @@
   color: #111;
 }
 
-/* 📝 DESCRIPTION */
 .description {
   margin-bottom: 12px;
   line-height: 1.5;
   color: #555;
 }
 
-/* 👤 AUTHOR */
-.author {
-  font-size: 13px;
-  color: #777;
-  margin-bottom: 4px;
-}
-
-/* 📍 LOCATION */
-.location {
-  font-size: 13px;
-  color: #999;
-}
-
-/* 🔘 BUTTON */
 .read-more {
   margin-top: 12px;
   padding: 10px 16px;
@@ -140,7 +127,7 @@
   box-shadow: 0 6px 15px rgba(108,76,241,0.3);
 }
 
-/* 📱 GRID */
+/* GRID */
 .event-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -148,7 +135,9 @@
   padding: 20px 50px;
 }
 
-/* 📱 RESPONSIVE */
+/* --------- RESPONSIVE --------- */
+
+/* Large screens */
 @media (max-width: 1200px) {
   .event-wrapper {
     grid-template-columns: repeat(2, 1fr);
@@ -156,9 +145,51 @@
   }
 }
 
-@media (max-width: 768px) {
+/* Tablet */
+@media (max-width: 900px) {
   .event-wrapper {
     grid-template-columns: 1fr;
-    padding: 20px;
+    padding: 15px 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .event-card {
+    max-width: 100%;
+  }
+
+  .event-image {
+    height: 180px;
+  }
+
+  .read-more {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Small phones */
+@media (max-width: 400px) {
+  .event-image {
+    height: 150px;
+  }
+
+  .event-card h3 {
+    font-size: 16px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .price, .category, .date, .author, .location {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+
+  .read-more {
+    font-size: 0.85rem;
+    padding: 8px 12px;
   }
 }

@@ -1,4 +1,3 @@
-import Navbar from "../componnets/NavBar";
 import EventCard from "../componnets/EventCard";
 
 import "./Profile.css";
@@ -23,6 +22,8 @@ export default function Profile() {
       <section className="events-section">
         {/* Event items would go here */}
       </section>
+
+      
 
       </div>
     </div>

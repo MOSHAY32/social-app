@@ -9,6 +9,7 @@
   padding: 20px 15px;
   box-shadow: 4px 0 20px rgba(0,0,0,0.1);
   position: sticky;
+  top: 0;
 }
 
 /* לוגו */
@@ -41,6 +42,9 @@
   transition: all 0.25s ease;
   font-size: 15px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 /* hover */
@@ -73,11 +77,24 @@
 
   .sidebar-logo h2,
   .sidebar-nav li span {
-    display: none;
+    display: none; /* מסתיר טקסט */
   }
 
   .sidebar-nav li {
-    text-align: center;
+    justify-content: center;
     padding: 12px 0;
+  }
+
+  /* Tooltip קטן למובייל */
+  .sidebar-nav li:hover::after {
+    content: attr(data-label);
+    position: absolute;
+    left: 80px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 13px;
   }
 }

@@ -1,0 +1,75 @@
+.table-container {
+  width: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background-color: #fff;
+  margin-top: 5%;
+}
+
+/* כותרת */
+.table-header {
+  font-weight: bold;
+  background-color: #eaeaea;
+  border-bottom: 2px solid #ccc;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+/* שורה */
+.table-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.2s;
+}
+
+/* הובר */
+.table-row:hover,
+.table-row:active {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+/* שורות חלופיות */
+.even-row {
+  background-color: #fafafa;
+}
+.odd-row {
+  background-color: #fff;
+}
+
+/* תאים */
+.table-cell {
+  text-align: center;
+  padding: 4px 8px;
+  flex: 1;
+  word-break: break-word; /* מונע קריסת תאים עם טקסט ארוך */
+}
+
+/* יחס שונה לעמודות */
+.table-cell.email { flex: 2; text-align: left; }
+.table-cell.eventTitle { flex: 2; text-align: left; }
+.table-cell.buyer { flex: 1; }
+.table-cell.created { flex: 1; }
+.table-cell.amount { flex: 1; }
+
+/* רספונסיבי */
+@media (max-width: 700px) {
+  .table-row {
+    flex-direction: column;
+    padding: 8px 0;
+  }
+  .table-cell {
+    padding: 4px 0;
+    text-align: left; /* קריא יותר במובייל */
+  }
+}
