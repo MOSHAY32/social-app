@@ -3,6 +3,7 @@ import EventCard from "../componnets/EventCard";
 import "./Profile.css";
 
 export default function Profile() {
+  
   return (
     <div className="container">
         <div className="profile-header" style={{ padding: "20px" }}>

@@ -12,7 +12,6 @@
 .search {
   border: 2px solid #ccc;
   background-color: transparent;
-  box-shadow: #007bff 0px 0px 5px;
   width: 100%;           /* מתרחב למיכל האב */
   max-width: 600px;      /* לא יגדל יותר מדי */
   padding: 12px 20px;

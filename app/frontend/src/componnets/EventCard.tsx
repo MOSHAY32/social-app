@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Trash2 } from "lucide-react";
 import EventModal from "./EventModal";
+import { FiTrash2, FiEdit } from "react-icons/fi"; // אייקוני מחיקה ועריכה
 import "./EventCard.css";
 
 interface Event {
@@ -17,21 +17,23 @@ interface Event {
     name: string;
   };
   imageUrl?: string;
+  urlEvent?: string;
 }
 
 interface EventCardProps {
   event?: Event;
+  currentUserId?: string; 
   onDelete?: (id: string) => void;
+  onEdit?: (id: string) => void;
 }
 
-const EventCard: React.FC<EventCardProps> = ({ event, onDelete }) => {
+const EventCard: React.FC<EventCardProps> = ({ event, currentUserId, onDelete, onEdit }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   if (!event) {
-    // Placeholder עבור Loading
     return (
       <div className="event-card placeholder">
         <div className="image-container">
@@ -47,19 +49,13 @@ const EventCard: React.FC<EventCardProps> = ({ event, onDelete }) => {
           <p className="description skeleton-text"></p>
           <p className="author skeleton-text"></p>
           <p className="location skeleton-text"></p>
-          <button
-            className="read-more skeleton-button"
-            onClick={() => alert("Loading event details...")}
-          >
-            Loading
-          </button>
+          <button className="read-more skeleton-button">Loading</button>
         </div>
       </div>
     );
   }
 
   const { _id, title, description, location, isFree, price, category, date, author, imageUrl } = event;
-
   const formattedDate = new Date(date).toLocaleString("en-US", {
     weekday: "short",
     month: "short",
@@ -68,22 +64,35 @@ const EventCard: React.FC<EventCardProps> = ({ event, onDelete }) => {
     minute: "2-digit",
   });
 
+  const isCreator = currentUserId === author._id;
+
   return (
     <>
-      {/* הכרטיס עצמו – כל הלחיצה עליו פותחת Modal */}
       <div className="event-card" onClick={openModal}>
         {/* IMAGE */}
         <div className="image-container">
-          <img src={imageUrl || "/fallback.jpg"} alt={title} className="event-image" />
-          {onDelete && (
-            <div
-              className="delete-icon"
-              onClick={(e) => {
-                e.stopPropagation(); // חשוב – מונע פתיחת modal כשלוחצים על המחיקה
-                onDelete(_id);
-              }}
-            >
-              <Trash2 size={18} />
+          <img src={imageUrl} alt={title} className="event-image" />
+
+          {isCreator && (
+            <div className="card-icons">
+              {onEdit && (
+                <FiEdit
+                  className="icon edit-icon"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onEdit(_id);
+                  }}
+                />
+              )}
+              {onDelete && (
+                <FiTrash2
+                  className="icon delete-icon"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onDelete(_id);
+                  }}
+                />
+              )}
             </div>
           )}
         </div>
@@ -104,8 +113,8 @@ const EventCard: React.FC<EventCardProps> = ({ event, onDelete }) => {
           <button
             className="read-more"
             onClick={(e) => {
-              e.stopPropagation(); // עצור את הפצת הלחיצה
-              openModal(); // פתיחת modal גם כאן
+              e.stopPropagation();
+              openModal();
             }}
           >
             View Event

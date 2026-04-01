@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import Navbar from "../componnets/NavBar";
 import Search from "../componnets/Search";
 import EventCard from "../componnets/EventCard";
+import defaultImage from "../assets/defualt.jpg"
 import "./Home.css";
 
 export default function HomePage() {
-  const [events, setEvents] = useState([]); // כאן נשמור את כל האירועים מהשרת
-  const [loading, setLoading] = useState(true); // מצב טעינה
+  const [events, setEvents] = useState([]); 
+  const [loading, setLoading] = useState(true); 
 
-  // פונקציה להביא את כל האירועים מהשרת
   const getAllEvents = async () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/events`);
@@ -26,7 +26,6 @@ export default function HomePage() {
     }
   };
 
-
   useEffect(() => {
     getAllEvents();
   }, []);
@@ -41,7 +40,7 @@ export default function HomePage() {
       {/* Event Cards */}
       <section className="event-wrapper">
         {loading
-          ? Array.from({ length: 8 }).map((_, i) => <EventCard key={i} />) // Placeholder
+          ? Array.from({ length: 8 }).map((_, i) => <EventCard key={i} />) 
           : events.map((event) => (
               <EventCard
                 key={event._id}
@@ -55,7 +54,8 @@ export default function HomePage() {
                   category: event.type,
                   date: event.startDate,
                   author: { _id: event.creatorId, name: "Creator" },
-                  imageUrl: event.url,
+                  urlEvent: event.url && event.url.trim() !== "" ? event.url : "",    
+                  imageUrl: event.imageUrl && event.imageUrl.trim() !== "" ? event.imageUrl: defaultImage,
                 }}
               />
             ))}

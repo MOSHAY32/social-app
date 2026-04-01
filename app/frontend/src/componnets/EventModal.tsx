@@ -1,5 +1,5 @@
 import React from "react";
-import { X } from "lucide-react"; // אייקון X
+import { X, Calendar } from "lucide-react"; // אייקון X ויומן
 import "./EventModal.css";
 
 interface EventModalProps {
@@ -9,35 +9,89 @@ interface EventModalProps {
   description: string;
   location: string;
   date: string;
+  endDate?: string;
   author: string;
-}
-
-const closeModal = () => {
-  // Placeholder function for loading state
-  alert("Closing modal...");
+  imageUrl?: string;
+  isFree: boolean;
+  price?: number;
+  category: string;
 }
 
 const EventModal: React.FC<EventModalProps> = ({
   isOpen,
+  onClose,
   title,
   description,
   location,
   date,
+  endDate,
   author,
+  imageUrl,
+  isFree,
+  price,
+  category,
 }) => {
   if (!isOpen) return null;
 
+  const formattedDate = new Date(date).toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  });
+
+  const formattedStartTime = new Date(date).toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  const formattedEndTime = endDate
+    ? new Date(endDate).toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+    : null;
+
   return (
-    <div className="modal-overlay" onClick={closeModal}>
+    <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={closeModal}>
-          <X size={20} />
+        <button className="modal-close" onClick={onClose}>
+          <X size={24} />
         </button>
-        <h2>{title}</h2>
-        <p>{description}</p>
-        <p><strong>Location:</strong> {location}</p>
-        <p><strong>Date:</strong> {date}</p>
-        <p><strong>Author:</strong> {author}</p>
+
+        {/* צד שמאל – תמונה */}
+        <div className="modal-left">
+          {imageUrl ? (
+            <img src={imageUrl} alt={title} />
+          ) : (
+            <div className="placeholder">No Image</div>
+          )}
+        </div>
+
+        {/* צד ימין – פרטים */}
+        <div className="modal-right">
+          <h2 className="event-title">{title}</h2>
+
+          <div className="event-info">
+            <span className={`price ${isFree ? "free" : "paid"}`}>
+              {isFree ? "Free" : `$${price}`}
+            </span>
+            <span className="category">{category}</span>
+            <span className="author">By {author}</span>
+          </div>
+
+          <button className="btn">Get Ticket</button>
+
+          <div className="event-details">
+            <div className="date-time">
+              <Calendar size={18} />
+              {formattedDate} | {formattedStartTime}
+              {formattedEndTime ? ` - ${formattedEndTime}` : ""}
+            </div>
+            <div className="location">📍 {location}</div>
+          </div>
+
+          <p className="event-description">{description}</p>
+        </div>
       </div>
     </div>
   );

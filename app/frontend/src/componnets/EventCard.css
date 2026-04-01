@@ -1,7 +1,7 @@
 /* ---------- Event Card Responsive CSS ---------- */
 
 .event-card {
-  position: relative;
+  position: relative; /* חשוב למיקום delete-icon */
   background: white;
   padding: 0;
   border-radius: 20px;
@@ -19,6 +19,10 @@
 }
 
 /* IMAGE */
+.image-container {
+  position: relative; /* חשוב למיקום האייקון בתוך התמונה */
+}
+
 .event-image {
   width: 100%;
   height: 200px;
@@ -34,35 +38,65 @@
   background: linear-gradient(to top, rgba(0,0,0,0.15), transparent 40%);
   opacity: 0;
   transition: opacity 0.3s;
+  z-index: 1;
 }
 
 .event-card:hover::after {
   opacity: 1;
 }
 
-/* DELETE ICON */
-.delete-icon {
+/* CARD ICONS */
+.card-icons {
   position: absolute;
   top: 12px;
   right: 12px;
-  cursor: pointer;
-  color: #ff4d4f;
-  background: white;
-  padding: 8px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: all 0.2s;
-  z-index: 2;
+  display: flex;
+  gap: 8px;
+  z-index: 10; /* מעל overlay */
+  opacity: 0;
+  transition: opacity 0.25s;
 }
 
-.delete-icon:hover {
-  transform: scale(1.1);
+.event-card:hover .card-icons {
+  opacity: 1;
+}
+
+.card-icons .icon {
+  background: white;
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.card-icons .delete-icon {
+  color: #ff4d4f;
+}
+
+.card-icons .delete-icon:hover {
   background: #ffeaea;
+  transform: scale(1.1);
+}
+
+.card-icons .edit-icon {
+  color: #1890ff;
+}
+
+.card-icons .edit-icon:hover {
+  background: #e6f7ff;
+  transform: scale(1.1);
 }
 
 /* CONTENT */
 .event-content {
   padding: 18px;
+  position: relative;
+  z-index: 2;
 }
 
 .event-meta {
@@ -136,8 +170,6 @@
 }
 
 /* --------- RESPONSIVE --------- */
-
-/* Large screens */
 @media (max-width: 1200px) {
   .event-wrapper {
     grid-template-columns: repeat(2, 1fr);
@@ -145,7 +177,6 @@
   }
 }
 
-/* Tablet */
 @media (max-width: 900px) {
   .event-wrapper {
     grid-template-columns: 1fr;
@@ -153,7 +184,6 @@
   }
 }
 
-/* Mobile */
 @media (max-width: 600px) {
   .event-card {
     max-width: 100%;
@@ -169,7 +199,6 @@
   }
 }
 
-/* Small phones */
 @media (max-width: 400px) {
   .event-image {
     height: 150px;
@@ -192,4 +221,51 @@
     font-size: 0.85rem;
     padding: 8px 12px;
   }
+}
+
+card-icons {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.event-card:hover .card-icons {
+  opacity: 1;
+}
+
+.card-icons .icon {
+  background: white;
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s, background 0.2s;
+}
+
+/* צבעים לפי סוג אייקון */
+.card-icons .delete-icon {
+  color: #ff4d4f;
+}
+
+.card-icons .delete-icon:hover {
+  background: #ffeaea;
+  transform: scale(1.1);
+}
+
+.card-icons .edit-icon {
+  color: #1890ff;
+}
+
+.card-icons .edit-icon:hover {
+  background: #e6f7ff;
+  transform: scale(1.1);
 }

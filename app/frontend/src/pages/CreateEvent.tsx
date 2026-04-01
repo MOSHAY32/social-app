@@ -106,10 +106,7 @@ function CreateEventPage() {
             value={formData.description}
             onChange={handleChange}
           />
-          <div className="warrper-img">
-            <input className="inputs-text-area" type="image" alt="Drag photo here" />
-            <button className="image-btn" type="button">Select From Gallery</button>
-          </div>
+          
           <input
             className="inputs-location full-width"
             type="text"
