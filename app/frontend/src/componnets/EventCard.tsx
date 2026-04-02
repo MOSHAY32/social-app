@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import EventModal from "./EventModal";
 import { FiTrash2, FiEdit } from "react-icons/fi"; // אייקוני מחיקה ועריכה
 import "./EventCard.css";
+import { PricingTable } from "@clerk/clerk-react";
 
 interface Event {
   _id: string;
@@ -132,6 +133,9 @@ const EventCard: React.FC<EventCardProps> = ({ event, currentUserId, onDelete, o
         date={formattedDate}
         author={author.name}
         imageUrl={imageUrl}
+        price={price}
+        author={author._id}
+        category={category}
       />
     </>
   );

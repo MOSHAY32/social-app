@@ -33,3 +33,29 @@ export const countries = [
   "Luxembourg",
   "Iceland"
 ];
+
+export const categories = [
+  "All",
+  "Music",
+  "Art",
+  "Theater",
+  "Dance",
+  "Film",
+  "Comedy",
+  "Sports",
+  "Technology",
+  "Education",
+  "Networking",
+  "Food & Drink",
+  "Fashion",
+  "Health & Wellness",
+  "Business",
+  "Gaming",
+  "Festival",
+  "Charity",
+  "Workshop",
+  "Conference",
+  "Party",
+  "Exhibition",
+  "Lecture"
+];

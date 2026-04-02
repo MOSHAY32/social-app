@@ -97,6 +97,7 @@
   border-radius: 999px;
   font-weight: 600;
   font-size: 14px;
+  color: #065f46;
 }
 
 .price.free {
@@ -105,8 +106,8 @@
 }
 
 .price.paid {
-  background: #fde2e2;
-  color: #b91c1c;
+  background: #d1fae5;
+  color: #065f46;
 }
 
 .category {

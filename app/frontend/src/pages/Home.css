@@ -110,6 +110,54 @@
 }
 
 
+.btns-home{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.btns {
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0,0,0,0.05);
+  padding: 10px 18px;
+  border-radius: 10px;
+  width: 140px;
+
+  color: #444;
+  font-size: 15px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+.btns:hover {
+  background: rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+/* Click */
+.btns:active {
+  transform: scale(0.96);
+}
+
+/* Disabled (אם תרצה בהמשך) */
+.btns:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+
 /* ---------- RESPONSIVE ---------- */
 
 /* Laptop */
@@ -155,12 +203,40 @@
 
 }
 
-/* Small phones */
 
-@media (max-width: 400px) {
+.event-wrapper{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
 
-  .post-actions button {
-    width: 100%;
+/* מסכים גדולים */
+@media (max-width: 1400px){
+  .event-wrapper{
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1500px;
   }
+}
+/* טאבלט */
+@media (max-width: 900px){
+  .event-wrapper{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
+/* מובייל */
+@media (max-width: 600px){
+  .event-wrapper{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Laptop */
+@media (max-width: 1400px){
+  .event-wrapper{
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

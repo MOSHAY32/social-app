@@ -1,6 +1,7 @@
 import React from "react";
 import { X, Calendar } from "lucide-react"; // אייקון X ויומן
 import "./EventModal.css";
+import { useNavigate } from "react-router-dom";
 
 interface EventModalProps {
   isOpen: boolean;
@@ -32,6 +33,7 @@ const EventModal: React.FC<EventModalProps> = ({
   category,
 }) => {
   if (!isOpen) return null;
+  console.log({ price, category, isFree });
 
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     weekday: "short",
@@ -50,8 +52,13 @@ const EventModal: React.FC<EventModalProps> = ({
         minute: "2-digit",
       })
     : null;
-
+    const navigate = useNavigate();
+    
+    const handlePayment = () => {
+  navigate("/payments");
+};
   return (
+    
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>
@@ -79,7 +86,7 @@ const EventModal: React.FC<EventModalProps> = ({
             <span className="author">By {author}</span>
           </div>
 
-          <button className="btn">Get Ticket</button>
+          <button className="btn" onClick={handlePayment}>Get Ticket</button>
 
           <div className="event-details">
             <div className="date-time">
@@ -89,7 +96,7 @@ const EventModal: React.FC<EventModalProps> = ({
             </div>
             <div className="location">📍 {location}</div>
           </div>
-
+          <h3>What You'll Learn</h3>
           <p className="event-description">{description}</p>
         </div>
       </div>
