@@ -1,4 +1,52 @@
-/* LandingPage.css */
+/* ---------------- PROFILE CARD & EVENTS ---------------- */
+
+.profile-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: rgb(233, 233, 241);
+  border-radius: 15px;
+  padding: 10px;
+  margin-bottom: 25px;
+}
+
+.myEvent {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(233, 233, 241);
+  border-radius: 15px;
+  margin-bottom: 2.5%;
+}
+
+.myEvent button {
+  margin-left: auto;
+}
+
+.tickets-section {
+  display: flex;          
+  flex-direction: row;
+  gap: 20px;               
+  overflow-x: auto;        
+  padding-bottom: 10px;   
+}
+
+.tickets-section > * {
+  flex: 0 0 auto;
+}
+
+/* ---------------- EXISTING LANDING PAGE STYLES ---------------- */
 
 /* Reset */
 * {
@@ -194,6 +242,22 @@ body {
   background: #e0e7ff;
 }
 
+.events {
+  width: 100%;
+  background-color: rgb(233, 233, 241);
+  border-radius: 15px;
+  padding: 10px;
+  margin-bottom: 25px;
+  overflow-x: auto;
+}
+
+.event-cards {
+  display: grid;
+  grid-auto-flow: column; 
+  grid-auto-columns: minmax(400px, 1fr); 
+  gap: 20px;
+}
+
 /* Footer */
 
 .footer {
@@ -230,27 +294,20 @@ body {
 
 /* Large screens */
 @media (max-width: 1200px) {
-
   .hero {
     padding: 0 3rem;
   }
-
 }
 
 /* Laptop */
-
 @media (max-width: 1024px) {
-
   .hero-content h1 {
     font-size: 2.5rem;
   }
-
 }
 
 /* Tablet */
-
 @media (max-width: 768px) {
-
   .hero {
     flex-direction: column-reverse;
     text-align: center;
@@ -264,13 +321,10 @@ body {
   .hero-buttons {
     justify-content: center;
   }
-
 }
 
 /* Mobile */
-
 @media (max-width: 600px) {
-
   .features h2,
   .testimonials h2,
   .cta h2 {
@@ -284,13 +338,10 @@ body {
   .testimonial {
     width: 100%;
   }
-
 }
 
 /* Small phones */
-
 @media (max-width: 400px) {
-
   .hero-content h1 {
     font-size: 1.8rem;
   }
@@ -302,5 +353,4 @@ body {
   .hero-buttons button {
     width: 100%;
   }
-
 }

@@ -5,58 +5,71 @@
   height: 80px;
   background: white;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 0 4rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   z-index: 100;
 }
 
+/* צד שמאל */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* לוגו */
 .logo {
-  flex: 1;
   font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
 }
 
+/* צד ימין */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* קישורים */
 .nav-links {
-  flex: 1;
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 2rem;
-  margin-right: 60%; /* <-- כאן הבעיה */
+  gap: 1.5rem;
 }
 
-.nav-buttons {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 1rem; /* רווח בין הכפתורים */
-}
-
-/* קישורים באמצע */
+/* כפתורים */
 .nav-links a,
-.nav-buttons button,
+.nav-right button,
 .nav-button {
-  background: transparent; /* אין רקע */
-  color: black; /* צבע טקסט שחור */
-  border: none; /* אין מסגרת */
+  background: transparent;
+  color: black;
+  border: none;
   cursor: pointer;
+  border-radius: 30px;
   font-weight: 500;
   padding: 0.5rem 1rem;
   transition: color 0.3s;
 }
+.nav-right .btn-navbar {
+  background: #8859e0;
+  color: white;
+  transition: all 0.3s;
+}
 
-/* hover – רק שינוי צבע טקסט */
+/* hover */
 .nav-links a:hover,
-.nav-buttons button:hover,
+.nav-right .btn-navbar:hover,
 .nav-button:hover {
-  color: #1d4ed8;
+  transform: scale(1.1);
+ 
 }
 
 /* 📱 רספונסיבי */
 @media (max-width: 768px) {
+
   .navbar {
     flex-direction: column;
     height: auto;
@@ -64,22 +77,15 @@
     gap: 1rem;
   }
 
-  .logo,
-  .nav-links,
-  .nav-buttons {
-    flex: unset;
+  .nav-left,
+  .nav-right {
     width: 100%;
     justify-content: center;
-    display: flex;
   }
 
   .nav-links {
     flex-wrap: wrap;
-    gap: 1rem;
+    justify-content: center;
   }
 
-  .nav-buttons {
-    flex-wrap: nowrap; /* הכפתורים נשארים בשורה */
-    gap: 0.5rem;
-  }
 }

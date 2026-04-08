@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import EventModal from "./EventModal";
-import { FiTrash2, FiEdit } from "react-icons/fi"; // אייקוני מחיקה ועריכה
+import { FiTrash2, FiEdit } from "react-icons/fi";
 import "./EventCard.css";
-import { PricingTable } from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom"; // <-- כאן אנחנו מקבלים את המשתמש המחובר
 
 interface Event {
   _id: string;
@@ -23,38 +24,18 @@ interface Event {
 
 interface EventCardProps {
   event?: Event;
-  currentUserId?: string; 
   onDelete?: (id: string) => void;
   onEdit?: (id: string) => void;
 }
 
-const EventCard: React.FC<EventCardProps> = ({ event, currentUserId, onDelete, onEdit }) => {
+const EventCard: React.FC<EventCardProps> = ({ event, onDelete, onEdit }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const { user } = useUser();
+  const navigate = useNavigate();
+  const currentUserId = user?.id; // <-- זה ייתן את ה־userId
 
-  if (!event) {
-    return (
-      <div className="event-card placeholder">
-        <div className="image-container">
-          <div className="event-image skeleton"></div>
-        </div>
-        <div className="event-content">
-          <div className="event-meta">
-            <span className="price skeleton-text"></span>
-            <span className="category skeleton-text"></span>
-          </div>
-          <p className="date skeleton-text"></p>
-          <h3 className="skeleton-text">Loading...</h3>
-          <p className="description skeleton-text"></p>
-          <p className="author skeleton-text"></p>
-          <p className="location skeleton-text"></p>
-          <button className="read-more skeleton-button">Loading</button>
-        </div>
-      </div>
-    );
-  }
+  if (!event) return <div>Loading...</div>;
 
   const { _id, title, description, location, isFree, price, category, date, author, imageUrl } = event;
   const formattedDate = new Date(date).toLocaleString("en-US", {
@@ -67,38 +48,24 @@ const EventCard: React.FC<EventCardProps> = ({ event, currentUserId, onDelete, o
 
   const isCreator = currentUserId === author._id;
 
+
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <>
-      <div className="event-card" onClick={openModal}>
-        {/* IMAGE */}
+      <div className="event-card">
         <div className="image-container">
-          <img src={imageUrl} alt={title} className="event-image" />
-
+          {imageUrl && <img src={imageUrl} alt={title} className="event-image" />}
           {isCreator && (
             <div className="card-icons">
-              {onEdit && (
-                <FiEdit
-                  className="icon edit-icon"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onEdit(_id);
-                  }}
-                />
-              )}
-              {onDelete && (
-                <FiTrash2
-                  className="icon delete-icon"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onDelete(_id);
-                  }}
-                />
-              )}
+              {onEdit && <FiEdit className="icon edit-icon" onClick={(e) => { e.stopPropagation(); onEdit(_id); }} />}
+              {onDelete && <FiTrash2 className="icon delete-icon" onClick={(e) => { e.stopPropagation(); onDelete(_id); }} />}
             </div>
           )}
         </div>
 
-        {/* CONTENT */}
         <div className="event-content">
           <div className="event-meta">
             <span className="price">{isFree ? "Free" : `$${price}`}</span>
@@ -111,19 +78,16 @@ const EventCard: React.FC<EventCardProps> = ({ event, currentUserId, onDelete, o
           <p className="author">By {author.name}</p>
           <p className="location">📍 {location}</p>
 
-          <button
-            className="read-more"
-            onClick={(e) => {
-              e.stopPropagation();
-              openModal();
-            }}
-          >
+          <div className="btns-div">
+            <button className="read-more" onClick={() => navigate(`/events-details`)}>
             View Event
           </button>
+
+           
+          </div>
         </div>
       </div>
 
-      {/* Modal */}
       <EventModal
         isOpen={isModalOpen}
         onClose={closeModal}
@@ -134,7 +98,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, currentUserId, onDelete, o
         author={author.name}
         imageUrl={imageUrl}
         price={price}
-        author={author._id}
+        authorId={author._id}
         category={category}
       />
     </>

@@ -30,3 +30,15 @@
 .myEvent button {
   margin-left: auto;
 }
+
+.tickets-section {
+  display: flex;          
+  flex-direction: row;
+  gap: 20px;               
+  overflow-x: auto;        
+  padding-bottom: 10px;   
+}
+
+.tickets-section > * {
+  flex: 0 0 auto;
+}

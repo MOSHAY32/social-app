@@ -144,16 +144,27 @@
   color: #555;
 }
 
+.btns-div{
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+
 .read-more {
   margin-top: 12px;
   padding: 10px 16px;
   background: linear-gradient(135deg, #8e5cf2, #6c4cf1);
   color: white;
-  border: none;
-  border-radius: 30px;
+  border: #fff;
+  border-radius: 15px;
   cursor: pointer;
   font-weight: 600;
   transition: all 0.2s;
+  width: 100%;
+
 }
 
 .read-more:hover {

@@ -66,13 +66,13 @@ const EventModal: React.FC<EventModalProps> = ({
         </button>
 
         {/* צד שמאל – תמונה */}
-        <div className="modal-left">
-          {imageUrl ? (
-            <img src={imageUrl} alt={title} />
-          ) : (
-            <div className="placeholder">No Image</div>
-          )}
-        </div>
+              <div 
+        className="modal-left" 
+        onClick={() => navigate(`/events-details`)} 
+        style={{ cursor: "pointer" }}
+      >
+        {imageUrl ? <img src={imageUrl} alt={title} /> : <div className="placeholder">No Image</div>}
+      </div>
 
         {/* צד ימין – פרטים */}
         <div className="modal-right">
@@ -86,7 +86,9 @@ const EventModal: React.FC<EventModalProps> = ({
             <span className="author">By {author}</span>
           </div>
 
-          <button className="btn" onClick={handlePayment}>Get Ticket</button>
+          <button className="btn" onClick={handlePayment}>
+            Get Ticket
+          </button>
 
           <div className="event-details">
             <div className="date-time">

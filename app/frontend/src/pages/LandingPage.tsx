@@ -1,13 +1,15 @@
 // src/pages/LandingPage.tsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./LandingPage.css";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../componnets/NavBar";
+import EventCard from "../componnets/EventCard";
+import { getAllEvents } from "../helper";
+import "./Profile.css";
+import defaultImage from "../assets/defualt.jpg";
 
-
-
-
+const EVENTS_PER_PAGE = 6;
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -25,11 +27,44 @@ export default function LandingPage() {
     { x1: 230, y1: 210, x2: 310, y2: 190, color: "#a78bfa", delay: 0.6 },
   ];
 
+  const [events, setEvents] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [myTickets, setMyTickets] = useState([]);
+  
+
+  const visibleEvents = events.slice(0, EVENTS_PER_PAGE);
+
+ useEffect(() => {
+  const fetchEvents = async () => {
+    setLoading(true);
+    try {
+      const eventsData = await getAllEvents();
+      setEvents(eventsData || []);
+      setMyTickets(
+        (eventsData || []).map((event: any) => ({
+          ...event,
+          isFree: event.price === 0,
+          category: event.type,
+          date: event.startDate,
+          author: { _id: event.creatorId, name: event.creatorName },
+          urlEvent: event.url,
+          imageUrl: event.imageUrl?.trim() ? event.imageUrl : defaultImage,
+        }))
+      );
+    } catch (err) {
+      console.error("Error fetching events:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchEvents();
+}, []);
+
   return (
     <div className="landing">
       <Navbar />
 
-      {/* Hero Section */}
       <section className="hero">
         <motion.div
           className="hero-content"
@@ -39,20 +74,20 @@ export default function LandingPage() {
         >
           <h1>Discover Events. Meet People.</h1>
           <p>Join amazing events and connect with your community easily.</p>
+
           <div className="hero-buttons">
             <button onClick={() => navigate("/login")}>Start Free</button>
             <button>Learn More</button>
           </div>
         </motion.div>
 
-        {/* Hero Illustration עם אנימציה */}
         <motion.div
           className="hero-illustration"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2 }}
         >
-          <svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <svg width="400" height="300" viewBox="0 0 400 300">
             {people.map((person, i) => (
               <motion.circle
                 key={i}
@@ -81,7 +116,39 @@ export default function LandingPage() {
             ))}
           </svg>
         </motion.div>
-      </section>      
+      </section>
+
+      <div className="container">
+      {/* ===================== My Tickets ===================== */}
+      <div className="profile-header" style={{ padding: "20px" }}>
+        <h2>Events</h2>
+        <button className="btn" onClick={() => navigate("/login")}>
+          Explore More Events
+        </button>
+      </div>
+
+      <section className="tickets-section">
+        {loading ? (
+          <p>Loading...</p>
+        ) : myTickets.length === 0 ? (
+          <p>You have no tickets yet.</p>
+        ) : (
+          myTickets.map((event) => (
+            <EventCard
+              key={event._id}
+              event={{
+                ...event,
+                isFree: event.price === 0,
+                category: event.type,
+                date: event.startDate,
+                author: { _id: event.creatorId, name: event.creatorName },
+                urlEvent: event.url,
+              }}
+            />
+          ))
+        )}
+      </section>
+      </div>
     </div>
   );
 }
