@@ -23,15 +23,15 @@ function CreateEventPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // בדיקה שהמשתמש טעון
+   
     if (!isLoaded || !user) {
       console.log("User not loaded yet");
-      return;
+    
     }
 
-    // הכנת הנתונים לשליחה לשרת
+   
     const eventData = {
-      creatorId: user.id, // עכשיו בטוח שיש user
+      creatorId: user.id, 
       name: formData.eventName,
       type: formData.category,
       description: formData.description,
@@ -75,7 +75,6 @@ function CreateEventPage() {
     }
   };
 
-  // עד שהמשתמש טעון לא מציגים את הטופס
   if (!isLoaded || !user) return <div>Loading user...</div>;
 
   return (

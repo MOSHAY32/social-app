@@ -1,5 +1,5 @@
 import React from "react";
-import { X, Calendar } from "lucide-react"; // אייקון X ויומן
+import { X, Calendar } from "lucide-react";
 import "./EventModal.css";
 import { useNavigate } from "react-router-dom";
 
@@ -16,6 +16,7 @@ interface EventModalProps {
   isFree: boolean;
   price?: number;
   category: string;
+  eventId: string;
 }
 
 const EventModal: React.FC<EventModalProps> = ({
@@ -31,9 +32,11 @@ const EventModal: React.FC<EventModalProps> = ({
   isFree,
   price,
   category,
+  eventId,
 }) => {
   if (!isOpen) return null;
-  console.log({ price, category, isFree });
+
+  const navigate = useNavigate();
 
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     weekday: "short",
@@ -52,29 +55,30 @@ const EventModal: React.FC<EventModalProps> = ({
         minute: "2-digit",
       })
     : null;
-    const navigate = useNavigate();
-    
-    const handlePayment = () => {
-  navigate("/payments");
-};
+
+  const handlePayment = () => {
+    navigate("/payments");
+  };
+
   return (
-    
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>
           <X size={24} />
         </button>
 
-        {/* צד שמאל – תמונה */}
-              <div 
-        className="modal-left" 
-        onClick={() => navigate(`/events-details`)} 
-        style={{ cursor: "pointer" }}
-      >
-        {imageUrl ? <img src={imageUrl} alt={title} /> : <div className="placeholder">No Image</div>}
-      </div>
+        <div
+          className="modal-left"
+          onClick={() => navigate(`/events-details/${eventId}`)}
+          style={{ cursor: "pointer" }}
+        >
+          {imageUrl ? (
+            <img src={imageUrl} alt={title} />
+          ) : (
+            <div className="placeholder">No Image</div>
+          )}
+        </div>
 
-        {/* צד ימין – פרטים */}
         <div className="modal-right">
           <h2 className="event-title">{title}</h2>
 
@@ -98,6 +102,7 @@ const EventModal: React.FC<EventModalProps> = ({
             </div>
             <div className="location">📍 {location}</div>
           </div>
+
           <h3>What You'll Learn</h3>
           <p className="event-description">{description}</p>
         </div>

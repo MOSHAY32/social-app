@@ -1,0 +1,44 @@
+
+.comment-section {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;  
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.comment-card{
+    border-radius: 5px;
+    padding: px;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    font-size: 14px;
+}
+
+.comment-body{
+    gap:5px
+}
+
+.img-user{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 50px;
+}
+
+.btn-like{
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: black;
+}
+.btn-like:hover{
+    background-color: #c5d7eb;
+}

@@ -132,3 +132,12 @@ box-shadow: inset 0 0 0 1px #ccc;
   gap: 10px;               /* רווח בין הכפתורים */
   width: 100%;             /* כל רוחב ההורה */
 }
+
+.exsplore-event-container {
+  max-width: 100%;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
